@@ -12,10 +12,18 @@
                    <input type="submit" value="Buscar">         </td>
           </tr>
       </form>
+
+
 <% var i; for (i=0; i < quizes.length; i++) { %>
       <tr>
          <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
       </tr>
 <%   } %>
+
+  <tr>
+    <td><p>
+      <a href="/quizes/new"><button type="button">Crear pregunta</button></a></p>
+    </td>
+  </tr>
 
 </table>
