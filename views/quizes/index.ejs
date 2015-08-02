@@ -5,15 +5,24 @@
   </tr>
   <form method="get" action="/quizes">
   <tr>
+     <td>
+     </td>
       <td>
          <input type="text" name="search" value=""/>
-         <input type="submit" value="Buscar">
+         <input type="submit" value="Buscar"><p>
+      </td>
+   </tr>
+  <tr>
+     <td> Tema
+     </td>
+      <td>Pregunta
       </td>
    </tr>
    </form>
 
     <% var i; for (i=0; i < quizes.length; i++) { %>
       <tr>
+         <td><%= quizes[i].tema %></td>
          <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
          <td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
          <td>
@@ -29,6 +38,8 @@
 
 
    <tr>
+     <td>
+     </td>
     <td><p>
       <a href="/quizes/new"><button type="button">Crear pregunta</button></a></p>
     </td>
