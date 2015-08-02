@@ -102,6 +102,12 @@ exports.edit = function(req, res){
                  { quiz: quiz, errors: []});
 };
 
+// DELETE /quizes/:id
+exports.destroy = function(req, res) {
+   req.quiz.destroy().then( function() {
+      res.redirect('/quizes');
+   }).catch(function(error){next(error)});
+};
 
 // GET /author
 exports.credits = function(req, res) {
