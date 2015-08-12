@@ -32,12 +32,15 @@ router.get('/logout', sessionController.destroy); // destruir sesión
 router.get('/quizes',                      quizController.index);
 router.get('/quizes/:quizId(\\d+)',        quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
-router.get('/quizes/new',                  quizController.new);
-router.post('/quizes/create',              quizController.create);
-router.get('/quizes/:quizId(\\d+)/edit',   quizController.edit); // invoca la acción edit del controlador
-router.put('/quizes/:quizId(\\d+)',        quizController.update);
-router.delete('/quizes/:quizId(\\d+)',     quizController.destroy);
- 
+// se modifican las rutas de edición/creación y borrado para incluir la Autorización
+// introduciendo el middleware loginRequired en las primitivas que sólo pueden realizar
+// los usuarios logados
+router.get('/quizes/new',                  sessionController.loginRequierd, quizController.new);
+router.post('/quizes/create',              sessionController.loginRequierd, quizController.create);
+router.get('/quizes/:quizId(\\d+)/edit',   sessionController.loginRequierd, quizController.edit); // invoca la acción edit del controlador
+router.put('/quizes/:quizId(\\d+)',        sessionController.loginRequierd, quizController.update);
+router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequierd, quizController.destroy);
+
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',   commentController.create);
 
