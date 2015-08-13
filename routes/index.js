@@ -18,7 +18,10 @@ router.get('/', function(req, res) {
 });
 
 // Autoload de comandos con :quizId
-router.param('quizId', quizController.load);	// autoload :quizId
+router.param('quizId', quizController.load);	        // autoload :quizId
+// Autoload de comandos con :commentId, para que el comentario esté pre-cargado
+// cuando se ejecute la acción "publish"
+router.param('commentId', commentController.load);	// autoload :commentId
 
 // Definición de rutas de session
 router.get('/login', sessionController.new);     // formulario login
@@ -41,9 +44,13 @@ router.get('/quizes/:quizId(\\d+)/edit',   sessionController.loginRequierd, quiz
 router.put('/quizes/:quizId(\\d+)',        sessionController.loginRequierd, quizController.update);
 router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequierd, quizController.destroy);
 
+// Definición de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',   commentController.create);
-
+// uso NO correcto de get, uso correcto sería PUT porque estamos actualizando la tabla comentarios 
+router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
+                          sessionController.loginRequierd, commentController.publish);
+ 
 router.get('/author', quizController.credits);
 
 module.exports = router;
