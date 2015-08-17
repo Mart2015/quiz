@@ -44,6 +44,29 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(function(req, res, next) {
+     // Si estamos logados contabilizamos el tiempo para controlar tiempo de inactividad
+     if(req.session.user){
+         // inicializamos la horaUltimoAcceso
+         if(!req.session.horaUltimoAcceso){
+             req.session.horaUltimoAcceso=(new Date()).getTime();
+             req.session.tiempoMaximoInactividad=2; // 2 minutos
+         }
+         //Si han pasado más de 2 minutos (en ms) eliminamos la sesión y demás variables
+         if(((new Date()).getTime()-req.session.horaUltimoAcceso) >
+             (req.session.tiempoMaximoInactividad*60*1000)){
+              delete req.session.user;     //eliminamos el usuario
+              delete req.session.horaUltimoAcceso;    // eliminamos la variable de hora ultimo acceso
+              delete req.session.tiempoMaximoInactividad; // eliminamos la variable de tiempo máximo actividad
+         }else{
+             // se actualiza la hora de último acceso
+             req.session.horaUltimoAcceso=(new Date()).getTime();
+         }
+    }
+    next();
+});
+
+
 app.use(partials());
 
 app.use('/', routes);
