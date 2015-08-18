@@ -112,6 +112,8 @@ exports.destroy = function(req, res) {
    }).catch(function(error){next(error)});
 };
 
+
+
 // GET /author
 exports.credits = function(req, res) {
   res.render('author', {creditos: 'Web De Juegos Quizes. By Marta Garcia', errors: []});

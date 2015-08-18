@@ -1,0 +1,80 @@
+<table>
+  <form method="get" action="/statistics">
+
+        <p> <br>
+        <table>
+         <tr>
+           <td>
+           </td>
+           <td>
+             Estad&iacutesticas:
+           </td>
+           <td>
+           </td>
+         </tr>
+         <tr>
+           <td>
+             <li>Total de preguntas..........................................:
+           </td>
+           <td><%=total_quizes%> </li>
+           </td>
+           <td>
+           </td>
+         </tr>
+         <tr>
+           <td>
+             <li>N&uacutemero total de comentarios.........................:
+           </td>
+           <td><%=total_comments%>
+           </td>
+           <td>
+           </td></li>
+         </tr>
+         <tr>
+           <td>
+             <li>.... N&uacutemero de comentarios publicados..........:
+           </td>
+           <td><%=comments_published%>
+           </td>
+           <td>
+           </td></li>
+         </tr>
+         <tr>
+           <td>
+             <li>.... N&uacutemero de comentarios no publicados.....:
+           </td>
+           <td><%=comments_unpublished%>
+           </td>
+           <td>
+           </td></li>
+         </tr>
+         <tr>
+           <td>
+             <li>N&uacutemero medio de comentarios por pregunta:
+           </td>
+           <td><%=comments_average%>
+           </td>
+           <td>
+           </td></li>
+         </tr>
+         <tr>
+           <td>
+             <li>N&uacutemero de preguntas sin comentarios...........:
+           </td>
+           <td><%=quizes_uncommented%>
+           </td>
+           <td>
+           </td></li>
+         </tr>
+         <tr>
+           <td>
+             <li>N&uacutemero de preguntas con comentarios..........:
+           </td>
+           <td><%=quizes_commented%>
+           </td>
+           <td>
+           </td></li>
+         </tr>
+        </table>
+   </form>
+</table>

@@ -7,6 +7,8 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
+var statisticsController = require('../controllers/statistics_controller');
+
 
 
 /* Página de entrada: GET home page. */
@@ -50,6 +52,8 @@ router.post('/quizes/:quizId(\\d+)/comments',   commentController.create);
 // uso NO correcto de get, uso correcto sería PUT porque estamos actualizando la tabla comentarios 
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
                           sessionController.loginRequierd, commentController.publish);
+
+router.get('/statistics', statisticsController.index);
  
 router.get('/author', quizController.credits);
 
