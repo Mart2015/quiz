@@ -35,8 +35,8 @@ var Quiz = sequelize.import(quiz_path);
 var comment_path = path.join(__dirname,'comment');
 var Comment = sequelize.import(comment_path); //Objeto para acceso a la tabla
 
-Comment.belongsTo(Quiz); //1 comentario pertenece a 1 pregunta
-Quiz.hasMany(Comment); // 1 quiz puede tener muchos comentarios
+Comment.belongsTo(Quiz, { onDelete: 'cascade' }); //1 comentario pertenece a 1 pregunta
+Quiz.hasMany(Comment, { onDelete: 'cascade' }); // 1 quiz puede tener muchos comentarios
 
 exports.Quiz = Quiz; // exportar tabla Quiz
 exports.Comment = Comment; // exportar el objeto de acceso a la tabla de comentarios

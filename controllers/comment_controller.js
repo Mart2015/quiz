@@ -58,3 +58,9 @@ exports.publish = function(req, res) {
       .then(function(){ res.redirect('/quizes/'+req.params.quizId);})
       .catch(function(error){next(error)});
 };
+
+exports.destroy = function(req, res){
+	req.comment.destroy().then( function() {
+		res.redirect('/quizes');
+	}).catch(function(error){ next(error)});
+};

@@ -52,6 +52,7 @@ router.post('/quizes/:quizId(\\d+)/comments',   commentController.create);
 // uso NO correcto de get, uso correcto sería PUT porque estamos actualizando la tabla comentarios 
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
                           sessionController.loginRequierd, commentController.publish);
+router.delete('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)', sessionController.loginRequierd, commentController.destroy);
 
 router.get('/statistics', statisticsController.index);
  
