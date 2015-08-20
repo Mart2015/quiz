@@ -33,7 +33,7 @@
         <%if(session.user){%>
         <form method="post" action="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>?_method=delete">
 			<button type="submit" onClick="return confirm('Borrar Comentario');">
-			borrar
+			Borrar
 			</button>
 	</form>
         <%}%>

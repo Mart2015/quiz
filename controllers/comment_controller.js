@@ -23,7 +23,11 @@ exports.new = function(req, res) {
 
 
 // POST /quizes/:quizId/comments
+
 exports.create = function(req, res) {
+  if (!req.body.comment.texto){
+    req.body.comment.texto = "comentario no valido. No publicar";
+  }
   var comment= models.Comment.build(
        { texto: req.body.comment.texto,
          QuizId: req.params.quizId
@@ -59,8 +63,9 @@ exports.publish = function(req, res) {
       .catch(function(error){next(error)});
 };
 
+// quizes/quizId
 exports.destroy = function(req, res){
 	req.comment.destroy().then( function() {
-		res.redirect('/quizes');
+		res.redirect('/quizes/'+req.params.quizId); // ponemos quizId para que se quede en los comentarios de la pregunta
 	}).catch(function(error){ next(error)});
 };
